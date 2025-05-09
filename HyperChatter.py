@@ -5,7 +5,7 @@ import os
 
 # --- Конфигурация API ---
 API_ENDPOINT = "https://api.hyperbolic.xyz/v1/chat/completions"
-API_KEY = os.environ.get("API_KEY")  # Надежный способ подгрузить ключ
+API_KEY = "$API_KEY"  # Заменяется автоматически установочным скриптом
 MODEL_NAME = "NousResearch/Hermes-3-Llama-3.1-70B"
 TOKEN_LIMIT = 2048
 TEMP = 0.7
@@ -74,7 +74,7 @@ def run():
         time.sleep(PAUSE_DURATION)
 
 if __name__ == "__main__":
-    if not API_KEY:
-        logger.error("API-ключ не установлен. Установите переменную окружения API_KEY.")
+    if not API_KEY or API_KEY == "$API_KEY":
+        logger.error("API-ключ не установлен. Пожалуйста, вставьте его в скрипт.")
     else:
         run()
